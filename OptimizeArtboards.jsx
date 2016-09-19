@@ -24,16 +24,15 @@
 */
 
 #target illustrator   
-//this runs the function  
 main();  
-// this is the function  
 function main(){  
-var theDoc = app.activeDocument; // active doc  
-var totalArtboards = theDoc.artboards.length;
-
-for (i = 0; i <= totalArtboards ; i++) {
-        theDoc.artboards.setActiveArtboardIndex(i);
-        app.activeDocument.selectObjectsOnActiveArtboard(i);
-        theDoc.fitArtboardToSelectedArt(i);  
-    }
+	if ( app.documents.length == 0 ) { return; }  
+	var theDoc = app.activeDocument; // active doc  
+	var totalArtboards = theDoc.artboards.length;
+	for (i = 0; i < totalArtboards ; i++) {
+	    theDoc.artboards.setActiveArtboardIndex(i);
+	    theDoc.selectObjectsOnActiveArtboard(i);
+	    theDoc.fitArtboardToSelectedArt(i); 
+	    theDoc.selection = null;  
+	}
 }
